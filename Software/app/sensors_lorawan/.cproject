@@ -40,6 +40,13 @@
 									<listOptionValue builtIn="false" value="DEBUG"/>
 								</option>
 								<option IS_BUILTIN_EMPTY="false" IS_VALUE_EMPTY="false" id="com.st.stm32cube.ide.mcu.gnu.managedbuild.tool.c.compiler.option.includepaths.882581729" name="Include paths (-I)" superClass="com.st.stm32cube.ide.mcu.gnu.managedbuild.tool.c.compiler.option.includepaths" useByScannerDiscovery="false" valueType="includePath">
+									<listOptionValue builtIn="false" value="../../../lib/ATECC608A-TNGLORA"/>
+									<listOptionValue builtIn="false" value="../../../lib/cryptoauthlib/lib"/>
+									<listOptionValue builtIn="false" value="../../../lib/cryptoauthlib/lib/calib"/>
+									<listOptionValue builtIn="false" value="../../../lib/cryptoauthlib/lib/crypto"/>
+									<listOptionValue builtIn="false" value="../../../lib/cryptoauthlib/lib/crypto/hashes"/>
+									<listOptionValue builtIn="false" value="../../../lib/cryptoauthlib/lib/hal"/>
+									<listOptionValue builtIn="false" value="../../../lib/cryptoauthlib/lib/host"/>
 									<listOptionValue builtIn="false" value="../../../target"/>
 									<listOptionValue builtIn="false" value="../../../lib/GNSE_BSP"/>
 									<listOptionValue builtIn="false" value="../../../lib/GNSE_HAL"/>
@@ -54,7 +61,6 @@
 									<listOptionValue builtIn="false" value="../lib_dependency"/>
 									<listOptionValue builtIn="false" value="../../../target/CMSIS/Core/Include"/>
 									<listOptionValue builtIn="false" value="../../../target/stm32wlxx_hal_driver/Inc"/>
-									<listOptionValue builtIn="false" value="../../../lib/STM32WLxx_LoRaWAN/LoRaWAN/Crypto"/>
 									<listOptionValue builtIn="false" value="../../../lib/STM32WLxx_LoRaWAN/LoRaWAN/LmHandler"/>
 									<listOptionValue builtIn="false" value="../../../lib/STM32WLxx_LoRaWAN/LoRaWAN/LmHandler/packages"/>
 									<listOptionValue builtIn="false" value="../../../lib/STM32WLxx_LoRaWAN/LoRaWAN/Mac"/>
