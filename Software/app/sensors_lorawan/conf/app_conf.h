@@ -24,16 +24,16 @@
 #ifndef APP_CONF_H
 #define APP_CONF_H
 
-#define APP_LOG_ENABLED 0
+#define APP_LOG_ENABLED 1
 
 /* if ON (=1) it enables the debugger plus 4 dgb pins */
 /* if OFF (=0) the debugger is OFF (lower consumption) */
-#define DEBUGGER_ON       0
+#define DEBUGGER_ON       1
 
 
 /* LOW_POWER_DISABLE = 0 : LowPowerMode enabled : MCU enters stop2 mode*/
 /* LOW_POWER_DISABLE = 1 : LowPowerMode disabled : MCU enters sleep mode only */
-#define LOW_POWER_DISABLE 0
+#define LOW_POWER_DISABLE 1
 
 /**
   * Supported requester to the MCU Low Power Manager - can be increased up  to 32

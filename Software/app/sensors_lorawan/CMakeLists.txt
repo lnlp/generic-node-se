@@ -2,7 +2,14 @@
 # LoRaWAN library
 #-------------------
 file(GLOB LORAWAN_SRC
-    "${PROJECT_SOURCE_DIR}/${LORAWAN_DIR}/LoRaWAN/Crypto/*.c"
+    "${PROJECT_SOURCE_DIR}/lib/ATECC608A-TNGLORA/*.c"
+    "${PROJECT_SOURCE_DIR}/lib/cryptoauthlib/lib/*.c"
+    "${PROJECT_SOURCE_DIR}/lib/cryptoauthlib/lib/calib/*.c"
+    "${PROJECT_SOURCE_DIR}/lib/cryptoauthlib/lib/crypto/*.c"
+    "${PROJECT_SOURCE_DIR}/lib/cryptoauthlib/lib/crypto/hashes/*.c"
+    "${PROJECT_SOURCE_DIR}/lib/cryptoauthlib/lib/hal/atca_hal.c"
+    "${PROJECT_SOURCE_DIR}/lib/cryptoauthlib/lib/host/*.c"
+    # "${PROJECT_SOURCE_DIR}/${LORAWAN_DIR}/LoRaWAN/Crypto/*.c"
     "${PROJECT_SOURCE_DIR}/${LORAWAN_DIR}/LoRaWAN/LmHandler/*.c"
     "${PROJECT_SOURCE_DIR}/${LORAWAN_DIR}/LoRaWAN/LmHandler/packages/LmhpCompliance.c"
     "${PROJECT_SOURCE_DIR}/${LORAWAN_DIR}/LoRaWAN/Mac/*.c"
@@ -23,7 +30,14 @@ target_include_directories(lorawan
     ${PROJECT_SOURCE_DIR}/${HAL_DIR}/Inc
     ${PROJECT_SOURCE_DIR}/${MCU_DIR}/Include
     ${PROJECT_SOURCE_DIR}/${CMSIS_DIR}/Core/Include
-    ${PROJECT_SOURCE_DIR}/${LORAWAN_DIR}/LoRaWAN/Crypto
+    ${PROJECT_SOURCE_DIR}/lib/ATECC608A-TNGLORA
+    ${PROJECT_SOURCE_DIR}/lib/cryptoauthlib/lib
+    ${PROJECT_SOURCE_DIR}/lib/cryptoauthlib/lib/calib
+    ${PROJECT_SOURCE_DIR}/lib/cryptoauthlib/lib/crypto
+    ${PROJECT_SOURCE_DIR}/lib/cryptoauthlib/lib/crypto/hashes
+    ${PROJECT_SOURCE_DIR}/lib/cryptoauthlib/lib/hal
+    ${PROJECT_SOURCE_DIR}/lib/cryptoauthlib/lib/host
+    # ${PROJECT_SOURCE_DIR}/${LORAWAN_DIR}/LoRaWAN/Crypto
     ${PROJECT_SOURCE_DIR}/${LORAWAN_DIR}/LoRaWAN/LmHandler
     ${PROJECT_SOURCE_DIR}/${LORAWAN_DIR}/LoRaWAN/LmHandler/packages
     ${PROJECT_SOURCE_DIR}/${LORAWAN_DIR}/LoRaWAN/Mac
@@ -58,6 +72,13 @@ file(GLOB MAIN_SRC
         "${PROJECT_SOURCE_DIR}/lib/MX25R1635/*.c"
         "${PROJECT_SOURCE_DIR}/lib/LIS2DH12/*.c"
         "${PROJECT_SOURCE_DIR}/lib/BUZZER/*.c"
+        "${PROJECT_SOURCE_DIR}/lib/ATECC608A-TNGLORA/*.c"
+        "${PROJECT_SOURCE_DIR}/lib/cryptoauthlib/lib/*.c"
+        "${PROJECT_SOURCE_DIR}/lib/cryptoauthlib/lib/calib/*.c"
+        "${PROJECT_SOURCE_DIR}/lib/cryptoauthlib/lib/crypto/*.c"
+        "${PROJECT_SOURCE_DIR}/lib/cryptoauthlib/lib/crypto/hashes/*.c"
+        "${PROJECT_SOURCE_DIR}/lib/cryptoauthlib/lib/hal/atca_hal.c"
+        "${PROJECT_SOURCE_DIR}/lib/cryptoauthlib/lib/host/*.c"
         )
 set(SOURCES
     ${MAIN_SRC}
@@ -82,6 +103,13 @@ target_include_directories(${PROJECT_NAME}.elf
     ${PROJECT_SOURCE_DIR}/lib/MX25R1635
     ${PROJECT_SOURCE_DIR}/lib/LIS2DH12
     ${PROJECT_SOURCE_DIR}/lib/BUZZER
+    ${PROJECT_SOURCE_DIR}/lib/ATECC608A-TNGLORA
+    ${PROJECT_SOURCE_DIR}/lib/cryptoauthlib/lib
+    ${PROJECT_SOURCE_DIR}/lib/cryptoauthlib/lib/calib
+    ${PROJECT_SOURCE_DIR}/lib/cryptoauthlib/lib/crypto
+    ${PROJECT_SOURCE_DIR}/lib/cryptoauthlib/lib/crypto/hashes
+    ${PROJECT_SOURCE_DIR}/lib/cryptoauthlib/lib/hal
+    ${PROJECT_SOURCE_DIR}/lib/cryptoauthlib/lib/host
     )
 target_link_libraries(${PROJECT_NAME}.elf
     PUBLIC

@@ -78,7 +78,13 @@ void SystemApp_Init(void)
   // /*Set verbose LEVEL*/
   UTIL_ADV_TRACE_SetVerboseLevel(VLEVEL_M);
 
-  /* Here user can init the board peripherals and sensors */
+  APP_PPRINTF("\r\n Powering onboard sensors \r\n");
+  GNSE_BSP_LS_Init(LOAD_SWITCH_SENSORS);
+  GNSE_BSP_LS_On(LOAD_SWITCH_SENSORS);
+  HAL_Delay(100);
+  APP_PPRINTF("\r\n Initializing sensors I2C bus \r\n");
+  GNSE_BSP_Sensor_I2C1_Init();
+  HAL_Delay(100);
 
   /*Init low power manager*/
   UTIL_LPM_Init();

@@ -26,7 +26,7 @@ extern "C" {
 
 #include "stm32_adv_trace.h"
 
-// #define MW_LOG_ENABLED
+#define MW_LOG_ENABLED
 
 #ifdef MW_LOG_ENABLED
 #define MW_LOG(TS,VL, ...)   do{ {UTIL_ADV_TRACE_COND_FSend(VL, T_REG_OFF, TS, __VA_ARGS__);} }while(0)
