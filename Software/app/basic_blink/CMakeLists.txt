@@ -1,0 +1,70 @@
+#-------------------
+# Main elf
+#-------------------
+file(GLOB MAIN_SRC
+    "${PROJECT_SOURCE_DIR}/app/basic_blink/*.c"
+    "${PROJECT_SOURCE_DIR}/target/*.c"
+    "${PROJECT_SOURCE_DIR}/lib/GNSE_BSP/*.c"
+    "${PROJECT_SOURCE_DIR}/lib/GNSE_HAL/*.c"
+    "${PROJECT_SOURCE_DIR}/lib/Utilities/*.c"
+    "${PROJECT_SOURCE_DIR}/lib/Utilities/baremetal/*.c"
+    "${PROJECT_SOURCE_DIR}/lib/SHTC3/*.c"
+    "${PROJECT_SOURCE_DIR}/lib/MX25R1635/*.c"
+    "${PROJECT_SOURCE_DIR}/lib/LIS2DH12/*.c"
+    "${PROJECT_SOURCE_DIR}/lib/BUZZER/*.c"
+    "${PROJECT_SOURCE_DIR}/lib/ATECC608A-TNGLORA/*.c"
+    "${PROJECT_SOURCE_DIR}/lib/cryptoauthlib/lib/*.c"
+    "${PROJECT_SOURCE_DIR}/lib/cryptoauthlib/lib/calib/*.c"
+    "${PROJECT_SOURCE_DIR}/lib/cryptoauthlib/lib/crypto/*.c"
+    "${PROJECT_SOURCE_DIR}/lib/cryptoauthlib/lib/crypto/hashes/*.c"
+    "${PROJECT_SOURCE_DIR}/lib/cryptoauthlib/lib/hal/atca_hal.c"
+    "${PROJECT_SOURCE_DIR}/lib/cryptoauthlib/lib/host/*.c"
+    )
+set(SOURCES
+    ${MAIN_SRC}
+    ${PROJECT_SOURCE_DIR}/${STARTUP_FILE}
+    ${PROJECT_SOURCE_DIR}/${SYSTEM_FILE}
+    )
+add_executable(${PROJECT_NAME}.elf
+    ${SOURCES}
+    )
+target_include_directories(${PROJECT_NAME}.elf
+    PUBLIC
+    ${PROJECT_SOURCE_DIR}/target
+    ${PROJECT_SOURCE_DIR}/app
+    ${PROJECT_SOURCE_DIR}/app/basic_blink
+    ${PROJECT_SOURCE_DIR}/app/basic_blink/conf
+    ${PROJECT_SOURCE_DIR}/lib/GNSE_BSP
+    ${PROJECT_SOURCE_DIR}/lib/GNSE_HAL
+    ${PROJECT_SOURCE_DIR}/lib/Utilities
+    ${PROJECT_SOURCE_DIR}/lib/Utilities/baremetal
+    ${PROJECT_SOURCE_DIR}/lib/SHTC3
+    ${PROJECT_SOURCE_DIR}/lib/MX25R1635
+    ${PROJECT_SOURCE_DIR}/lib/LIS2DH12
+    ${PROJECT_SOURCE_DIR}/lib/BUZZER
+    ${PROJECT_SOURCE_DIR}/lib/ATECC608A-TNGLORA
+    ${PROJECT_SOURCE_DIR}/lib/cryptoauthlib/lib
+    ${PROJECT_SOURCE_DIR}/lib/cryptoauthlib/lib/calib
+    ${PROJECT_SOURCE_DIR}/lib/cryptoauthlib/lib/crypto
+    ${PROJECT_SOURCE_DIR}/lib/cryptoauthlib/lib/crypto/hashes
+    ${PROJECT_SOURCE_DIR}/lib/cryptoauthlib/lib/hal
+    ${PROJECT_SOURCE_DIR}/lib/cryptoauthlib/lib/host
+    )
+target_link_libraries(${PROJECT_NAME}.elf
+    PUBLIC
+    hal
+    )
+target_compile_definitions(${PROJECT_NAME}.elf
+    PUBLIC
+    ${MCU}
+    SEMIHOSTING=${SEMIHOSTING}
+    )
+    # Create output in hex and binary format
+    create_bin_output(${PROJECT_NAME})
+    create_hex_output(${PROJECT_NAME})
+    # Add additional files to the make clean
+    set_property(DIRECTORY PROPERTY ADDITIONAL_MAKE_CLEAN_FILES
+    "${PROJECT_NAME}.map"
+    "${PROJECT_NAME}.bin"
+    "${PROJECT_NAME}.hex"
+    )

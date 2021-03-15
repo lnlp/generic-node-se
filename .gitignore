@@ -86,3 +86,4 @@ dkms.conf
 
 # STM32CubeIDE (eclipse)
 *.launch
+Software/cross.cmake

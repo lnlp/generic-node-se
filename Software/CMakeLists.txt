@@ -36,7 +36,9 @@ enable_language(C ASM)
 project(main)
 set (APP_LIST
 "basic"
+"basic_blink"
 "basic_lorawan"
+"basic_lorawan_th"
 "basic_bootloader"
 "basic_freertos"
 "freefall_lorawan"
