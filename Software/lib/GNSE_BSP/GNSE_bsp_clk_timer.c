@@ -23,6 +23,7 @@
 
 TIM_HandleTypeDef GNSE_BSP_buzzer_timer;
 RTC_HandleTypeDef GNSE_BSP_rtc;
+IWDG_HandleTypeDef GNSE_BSP_iwdg;
 
 int32_t GNSE_BSP_RTC_Init(void)
 {
@@ -55,6 +56,59 @@ int32_t GNSE_BSP_RTC_Init(void)
   if (HAL_RTC_SetAlarm_IT(&GNSE_BSP_rtc, &sAlarm, RTC_FORMAT_BCD) != HAL_OK)
   {
     return GNSE_BSP_ERROR_NO_INIT;
+  }
+  return GNSE_BSP_ERROR_NONE;
+}
+
+/**
+  * @brief  Configures independent watchdog timer
+  * @note   GNSE_BSP_IWDG_Refresh should be called at a recurring point in the application
+  *         to avoid the watchdog from resetting the application.
+  * @return GNSE_BSP status
+  */
+int32_t GNSE_BSP_IWDG_Init(void)
+{
+  /* Set the timeout to its max value
+   * Reload is counted down from
+  */
+  GNSE_BSP_iwdg.Instance = IWDG;
+  GNSE_BSP_iwdg.Init.Prescaler = IWDG_PRESCALER_256;
+  GNSE_BSP_iwdg.Init.Window = IWDG_WINR_WIN;
+  GNSE_BSP_iwdg.Init.Reload = GNSE_IWDG_TIMEOUT_S;
+
+  /* Set the LSI clock */
+  /* This is also done automatically by HAL_IWDG_Init, but this function does not set the prescaler */
+  RCC_OscInitTypeDef RCC_OscInitStruct = {0};
+  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_LSI;
+  RCC_OscInitStruct.LSIDiv = RCC_LSI_DIV128;
+  RCC_OscInitStruct.LSIState = RCC_LSI_ON;
+  HAL_Delay(IWDG_TIMER_DELAY); // Wait a bit for RCC_CSR_LSION to settle
+  if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
+  {
+    return GNSE_BSP_ERROR_NO_INIT;
+  }
+  else
+  {
+    if (HAL_IWDG_Init(&GNSE_BSP_iwdg) != HAL_OK)
+    {
+        return GNSE_BSP_ERROR_NO_INIT;
+    }
+  }
+
+  return GNSE_BSP_ERROR_NONE;
+}
+
+/**
+  * @brief  Refreshes the watchdog timer counter
+  * @note   This function needs to be called every time before
+  *         the watchdog timer is triggered to avoid a reset
+  * @return GNSE_BSP status
+  */
+int32_t GNSE_BSP_IWDG_Refresh(void)
+{
+  if (HAL_IWDG_Refresh(&GNSE_BSP_iwdg) != HAL_OK)
+  {
+    return GNSE_BSP_ERROR_PERIPH_FAILURE;
   }
   return GNSE_BSP_ERROR_NONE;
 }

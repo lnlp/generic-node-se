@@ -47,6 +47,9 @@ int main(void)
   MX_LoRaWAN_Init();
   while (1)
   {
+#if defined(IWDG_TIMER_ON) && (IWDG_TIMER_ON == 1)
+    GNSE_BSP_IWDG_Refresh();
+#endif /* IWDG_TIMER_ON */
     MX_LoRaWAN_Process();
   }
 }

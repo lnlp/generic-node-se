@@ -52,6 +52,21 @@ typedef enum
 } CFG_LPM_Id_t;
 
 /**
+  * IWDG timer definitions
+  */
+
+/* if ON (=1) the independent watchdog timer is used (reset MCU after inactivity) */
+/* if OFF (=0) the independent watchdog timer is not used */
+#define IWDG_TIMER_ON       0
+
+/* Watchdog counter trigger in seconds */
+/* This changes based on the config (prescalers for LSI and IWDG) */
+/* One tick is 1.024 seconds with default config: 1 / (LSI_VALUE / LSIPrescaler) = 1 / (250 / 256) */
+/* Important is to keep LSI_VALUE at 250 when using the LSI prescaler of 128 */
+/* Maximum is 4095 */
+#define GNSE_IWDG_TIMEOUT_S 10U
+
+/**
   * sequencer definitions
   */
 

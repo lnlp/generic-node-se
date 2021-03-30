@@ -91,6 +91,11 @@ void SystemApp_Init(void)
 #elif !defined(LOW_POWER_DISABLE)
 #error LOW_POWER_DISABLE not defined
 #endif /* LOW_POWER_DISABLE */
+
+  /* Set independent watchdog timer */
+#if defined(IWDG_TIMER_ON) && (IWDG_TIMER_ON == 1)
+  GNSE_BSP_IWDG_Init();
+#endif /* IWDG_TIMER_ON */
 }
 
 /**

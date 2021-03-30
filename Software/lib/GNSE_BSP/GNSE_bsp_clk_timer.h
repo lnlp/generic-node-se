@@ -26,9 +26,18 @@
 #include "stm32wlxx_hal.h"
 #include "GNSE_bsp_error.h"
 #include "GNSE_bsp_conf.h"
+#include "app_conf.h"
 
 extern TIM_HandleTypeDef GNSE_BSP_buzzer_timer;
 extern RTC_HandleTypeDef GNSE_BSP_rtc;
+extern IWDG_HandleTypeDef GNSE_BSP_iwdg;
+
+/* This delay is necessary for the IWDG timer
+ * HAL_RCC_OscCOnfig will perform a check for RCC_CSR_LSION and RCC_CSR_LSIRDY
+ * RCC_CSR_LSION takes some time to settle, causing an error in the clock config
+ * Only applicable when using a prescaler of 128 (check is only performed with this setting)
+ */
+#define IWDG_TIMER_DELAY 10U
 
 #define RTC_N_PREDIV_S 10
 #define RTC_PREDIV_S ((1 << RTC_N_PREDIV_S) - 1)
@@ -68,5 +77,8 @@ int32_t GNSE_BSP_BUZZER_TIM_Init(pTIM_CallbackTypeDef cb);
 int32_t GNSE_BSP_BUZZER_TIM_DeInit(pTIM_CallbackTypeDef cb);
 
 int32_t GNSE_BSP_RTC_Init(void);
+
+int32_t GNSE_BSP_IWDG_Init(void);
+int32_t GNSE_BSP_IWDG_Refresh(void);
 
 #endif /* GNSE_BSP_CLK_TIMER_H */
